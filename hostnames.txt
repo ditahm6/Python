@@ -1,0 +1,8 @@
+google.com 172.217.13.110
+uottawa.ca 137.122.8.77
+youtube 172.217.13.110
+facebook 31.13.80.36
+tinder.com 52.85.108.81
+match.com 208.83.242.49
+york.ca 69.172.201.101
+match.cst8245.lab 69.172.201.101
