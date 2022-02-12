@@ -1,11 +1,9 @@
 #!/usr/bin/python3
 
-# Name & Student#: Ditah Kumbong, 041001532
-# Section: Theory is 010 and Lab is 013
+# Name Ditah K
 # Program name & Version: Manage hostnames
 # Date: 29/10/2021
 # Version: 1.0
-# Completion time: 8 hours
 
 
 def show_menu():
