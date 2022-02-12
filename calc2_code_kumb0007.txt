@@ -1,12 +1,9 @@
 #!/usr/bin/python3
 
-# Name & Student#: Ditah Kumbong, 041001532
-# Section: Theory is 010 and Lab is 013
+# Name Ditah Kumbong
 # Program name & Version: Calculator 2
 # Date: 27/09/2021
 # Version: 2.0
-# Completion time: 55 minutes
-
 
 # Prompt the user to quit or for Operator, by passing the string to input function
 operator = input("Enter Operator : [+, -, *, /, q]: ")
