@@ -1,11 +1,9 @@
 #!/usr/bin/python3
 
-#	Name & Student#: Ditah Kumbong, 041001532
-#	Section: Theory is 010 and Lab is 013
+#	Name Ditah K
 #	Program name & Version: Calculator 2
 #	Date: 04/10/2021
 #	Version: 3.0
-#	Completion time: 2 hrs
 
 #	Defining function for menu
 def	displ_menu():
