@@ -1,0 +1,26 @@
+#!/usr/bin/python3
+
+# Program name: pystyle.py
+# Program purpose: Display a greeting
+# Author: Ditah Kumbong, Theory is 010 and Lab is 013
+# Date: 12/09/2021
+# Version: 1.0
+# Completion time: 10 minutes
+
+# Prompt the user for identification
+user_name = input("Please enter your name: ")
+
+#Display a greeting
+print("Welcome to CST8245,", user_name)
+
+#Evaluate user's scripting experience
+user_answer = input("Do you have previous scripting experience [Y/N]? ")
+if user_answer.upper() == "Y":
+    # Display a comgratulatory statement
+    print("Great.")
+else:
+    # Display an encouragung statement
+    print("Scripting can be fun.")
+
+# Display closing message
+print("Thank you for using this program")
