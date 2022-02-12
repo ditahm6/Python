@@ -1,0 +1,163 @@
+To connect to a database, run: psql <database_name> <role>.
+
+connect to a a database
+psql postgres postgres
+list database
+\l
+As the postgres account: create a database superuser account (“role”) <your role>
+using the PostgreSQL utility createuser on the Linux CLI: 
+createuser –s ***
+
+To creare database
+
+postgres=# CREATE DATABASE toolrental_kumb0007;
+to list roles
+\du
+
+yum install postgresql-devel 
+yum install python36-devel
+yum install python36-psycopg2
+
+[root@localhost project]# connection=psycopg2.connect database='toolrental_kumb0007', user='toolrental'
+
+[root@localhost project]# psql toolrental_kumb0007 toolrental
+
+#! /usr/bin/python3
+
+import sys
+import psycopg2
+
+try:
+	connection=psycopg2.connect(database='toolrental_kumb0007', user='toolrental')
+except psycopg2.DatabaseError:
+	print("Error: Connection to database not established.")
+	sys.exit(1)
+#early exit if DB not available
+print ("Database connection established")
+
+cursor = connection.cursor()
+cursor.close()
+connection.close()
+
+
+Create the following text files to create tables: 
+o  Tool:       create_tool.sql 
+o  Category:    create_category.sql 
+o  Customer:        create_customer.sql 
+o  Rental:      create_rental.sql 
+o  Tool category: create_tool_category.sql 
+
+Tool:       insert_tool.sql 
+o  Category:    insert_category.sql 
+o  Customer:        insert_customer.sql 
+o  Rental:      insert_rental.sql 
+o  Tool category: insert_tool_category.sql
+
+
+
+gedit /var/lib/pgsql/data/pg_hba.conf
+psql postgres dbadmin
+
+
+# systemctl enable postgresql.service 
+
+customers.sql tools.sql rentals.sql
+
+
+
+INSERT INTO tool (tool_id, tool, rental_days) 
+VALUES  
+('01', 'compressor', '7'), 
+('02', 'nail gun', '3'), 
+('03', 'level', '3'), 
+('04', 'pipe wrench', '14'), 
+('05', 'snake', '7'), 
+('06', 'crimper', '14'), 
+('07', 'multimeter', '3'), 
+('08', 'drill', '3') 
+('09', 'multitool', '7'), 
+('010', 'screw driver', '3'), 
+('011', 'framing hammer', '7'), 
+('012', 'miter saw', '3'),
+('013', 'forklift', '3');
+
+
+INSERT INTO category (category_id, category)
+VALUES
+('01', 'framing'),
+('02', 'plumbing'),
+('03', 'electrical'),
+('04', 'lyfting');
+
+
+SELECT title, genre, author_id
+FROM book 
+JOIN genre ON book.isbn = genre.isbn 
+JOIN book_author ON genre.isbn = book_author.isbn
+ORDER BY title;
+
+INSERT INTO customer (customer_id, first_name, last_name, phone) 
+VALUES  
+('001', 'Jane', 'Doe', '6131231231'),
+('002', 'Cane1', 'Eoe1', '6131231232'),
+('003', 'Tane1', 'Foe1', '6131231233'),
+('004', 'Fane1', 'Goe1', '6471231233'),
+('005', 'Oane1', 'Qoe1', '6471231234'),
+('006', 'Pane1', 'Qqe1', '6041231234'),
+('007', 'Qene1', 'Zgt1', '6041231236'),
+('008', 'Opa1', 'sdgds', '6041231237'),
+('009', 'Eva', 'Zgt1', '6041231237');
+
+
+
+INSERT INTO rental (rental_id, customer_id, tool_id, rental_date, return_date) 
+VALUES  
+('001', '004', '01', '11/20/2021', '11/24/2021'),
+('002', '003', '01', '11/20/2021', '11/23/2021'),
+('003', '003', '01', '11/20/2021', NULL),
+('004', '004', '01', '11/20/2021', '11/21/2021'),
+('005', '001', '01', '11/20/2021', NULL),
+('006', '005', '01', '11/20/2021', '11/29/2021'),
+('007', '005', '01', '11/20/2021', NULL),
+('008', '001', '01', '11/20/2021', '11/24/2021'),
+('009', '001', '01', '11/20/2021', '11/24/2021');
+
+
+INSERT INTO tool_category (tool_id, category_id) 
+VALUES
+((SELECT tool_id FROM tool WHERE tool = 'miter saw'), (SELECT category_id FROM category
+WHERE category = 'plumbing')),
+((SELECT tool_id FROM tool WHERE tool = 'drill'), (SELECT category_id FROM category
+WHERE category = 'framing')),
+((SELECT tool_id FROM tool WHERE tool = 'framing hammer'), (SELECT category_id FROM category
+WHERE category = 'framing')),
+((SELECT tool_id FROM tool WHERE tool = 'crimper'), (SELECT category_id FROM category
+WHERE category = 'plumbing')),
+((SELECT tool_id FROM tool WHERE tool = 'forklift'), (SELECT category_id FROM category
+WHERE category = 'lyfting')),
+((SELECT tool_id FROM tool WHERE tool = 'multimeter'), (SELECT category_id FROM category
+WHERE category = 'plumbing')),
+((SELECT tool_id FROM tool WHERE tool = 'multitool'), (SELECT category_id FROM category
+WHERE category = 'electrical')),
+((SELECT tool_id FROM tool WHERE tool = 'snake'), (SELECT category_id FROM category
+WHERE category = 'electrical')),
+((SELECT tool_id FROM tool WHERE tool = 'pipe wrench'), (SELECT category_id FROM category
+WHERE category = 'plumbing')),;
+
+
+customers.sql
+SELECT first_name, last_name, phone FROM customer;
+
+tools.sql
+SELECT tool.tool_id, tool, category, rental_days
+	FROM tool
+	JOIN tool_category ON tool.tool_id = tool_category.tool_id
+	JOIN category ON category.category_id = tool_category.category_id
+	ORDER BY tool, category;
+	
+rentals.sql
+SELECT rental_id, first_name, last_name, tool, rental_date, return_date
+	FROM rental
+	JOIN customer ON rental.customer_id = customer.customer_id
+	JOIN tool ON tool.tool_id = rental.tool_id;
+
