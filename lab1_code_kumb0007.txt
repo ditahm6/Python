@@ -2,10 +2,9 @@
 
 # Program name: pystyle.py
 # Program purpose: Display a greeting
-# Author: Ditah Kumbong, Theory is 010 and Lab is 013
+# Author: Ditah K
 # Date: 12/09/2021
 # Version: 1.0
-# Completion time: 10 minutes
 
 # Prompt the user for identification
 user_name = input("Please enter your name: ")
